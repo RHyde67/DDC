@@ -3,23 +3,23 @@
 % To load dataset, edit file name
 % For test datasets provide suggested settings are:
 % Gaussian5000
-%   InitRad=0.05, MinClus=any, unused at this time, Verbose: 1 to
+%   InitRad=0.05 to 0.10, MinClus=any, unused at this time, Verbose: 1 to
 %   watch progress, 2 to test speed with no output, Merge=1
 % DS2
 %   InitRad=0.05, MinClus=any, unused at this time, Verbose: 1 to
 %   watch progress, 2 to test speed with no output, Merge=0 (try both and
 %   it highlights the dangers of inappropriate merging!)
 
-DataIn=csvread('DS2.csv',1,0);
+DataIn=csvread('Gaussian5000.csv',1,0);
 
 DataIn=double(DataIn(:,1:2));
 for idx=1:size(DataIn,2)
     DataIn(:,idx) = (DataIn(:,idx)-min(DataIn(:,idx))) / (max(DataIn(:,idx))-min(DataIn(:,idx)));
 end
-InitRad=0.05;
+InitRad=0.10;
 MinClus=1;
-Verbose=0;
-Merge=0;
+Verbose=1;
+Merge=1;
 
 tic
 [Clusters, Results]=DDC_ver01_1(DataIn, InitRad, Merge, Verbose);
